@@ -9,7 +9,29 @@ import './App.css';
 function App() {
   return (
      <>
-       <Home/>
+        <Grid container spacing={3}>
+            <Grid item xs={12} sm={12}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={3}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={3}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={3}>
+                 <Home/>
+            </Grid>
+            <Grid item xs={12} sm={3}>
+                 <Home/>
+            </Grid>
+        </Grid>
      </>
   );
 }

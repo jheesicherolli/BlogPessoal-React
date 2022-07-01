@@ -12,9 +12,18 @@ import './Home.css';
 function Home(){
     return (
         <>
-        <h1 className="titulo">Home</h1>
-        <img className='img' src="https://content.r9cdn.net/rimg/dimg/22/f0/2fa0f608-city-20169-1697d979499.jpg?crop=true&width=1366&height=768&xhint=2057&yhint=1367" alt="Imagem da tela inicial" width="600px" height="500px" />
-        <h3 className="titulo">Cidade de Curitiba</h3>
+         <Paper>
+            <Box p={2}>
+                <Box display="flex" justifyContent="center">
+                    <h1>Título</h1>
+                </Box>
+                <img src="https://www.pinkvilla.com/imageresize/avengers-endgame-poster_1.jpg?width=752&format=webp&t=pvorg" alt="" style={{width: "100%", height:"100%"}}/>
+                <Box display="flex" justifyContent="center" p={2}>
+                    <Button variant="contained" color="primary">Texto 1</Button>
+                    <Button variant="contained" color="secondary">Texto 2</Button>
+                </Box>
+            </Box>
+         </Paper>
         </>
         /**<> </> é um fragment, utilizado para retornar uma lista de elementos, sem precisar definir
          * uma div
