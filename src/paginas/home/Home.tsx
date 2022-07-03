@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Box, Paper, Grid, Typography} from '@material-ui/core';
+import {Button, Box, Grid, Typography} from '@material-ui/core';
 import './Home.css';
 /**./ refere a pasta onde se encontra aquele arquivo, estou meio que voltando um caminho */
 
@@ -13,22 +13,22 @@ function Home(){
     return (
         <>
            <>
-            <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#3F51B5" }}>
+            <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={20} >
-                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" style={{ color: "white", fontWeight: "bold" }}>Seja bem vindo(a)!</Typography>
-                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" style={{ color: "white", fontWeight: "bold" }}>expresse aqui os seus pensamentos e opiniões!</Typography>
+                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className='titulo'>Seja bem vindo(a)!</Typography>
+                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" className='titulo'>expresse aqui os seus pensamentos e opiniões!</Typography>
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
                         </Box>
-                        <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#3F51B5", color: "white" }}>Ver Postagens</Button>
+                        <Button variant="outlined" className='botao'>Ver Postagens</Button>
                     </Box>
                 </Grid>
-                <Grid item xs={6} >
+                <Grid item xs={6}>
                     <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />
                 </Grid>
-                <Grid xs={12} style={{ backgroundColor: "white" }}>
+                <Grid xs={12} className='postagens' >
                 </Grid>
             </Grid>
         </>
@@ -40,7 +40,11 @@ function Home(){
 }
 
 
-  /**paper, da a ideia de que no background, existem folhas papel
+
+export default Home;
+
+
+/**paper, da a ideia de que no background, existem folhas papel
   <Paper/> fica dentro de todos os Grids Item
   */
   /*
@@ -54,4 +58,5 @@ function Home(){
   variant= faz com que o preenchimento da cor seja no botão inteiro
   */
 
-export default Home;
+  /**ao colocar um style na própria tag, inline, ele tem um poder muito maior, do que colocar o style em um arquivo a parte, entretanto 
+   * colocando o !importantq conseguimos deixar os arquivos da Home.css tenham uma configuração muito maior do que do material UI*/
