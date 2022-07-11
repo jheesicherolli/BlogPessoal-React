@@ -20,3 +20,4 @@ document.getElementById('root')
 reportWebVitals();
 
 //index.tsx é o reponsável por fazer a aplicação funcionar
+

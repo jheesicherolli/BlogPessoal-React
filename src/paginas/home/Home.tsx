@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, Box, Grid, Typography} from '@material-ui/core';
+import {Button, Grid, Typography} from '@material-ui/core';
+import {Box} from "@mui/material";
 import './Home.css';
 /**./ refere a pasta onde se encontra aquele arquivo, estou meio que voltando um caminho */
 

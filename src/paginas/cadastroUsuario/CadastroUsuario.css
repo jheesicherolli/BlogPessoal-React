@@ -1,0 +1,24 @@
+.imagem2{
+    
+    background-image: url(/src/assets/img/avengers.png);
+    background-repeat: no-repeat;
+     width:100vh;
+     min-height: 100vh;
+     background-size: cover; 
+     background-position: center;
+
+}
+
+.texto2{
+    font-weight: bold !important;
+}
+
+.btnConfiguracao{
+    margin-right: 20% !important;
+    
+
+}
+
+.text-decorator-none{
+    text-decoration: none;
+}
