@@ -6,6 +6,7 @@ import { buscaId, post, put } from '../../../services/Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
 function CadastroTema() {
 
@@ -24,7 +25,16 @@ function CadastroTema() {
         // useEffect para monitorar o token
     useEffect(() => {
         if (token == "") {
-            alert("Faça o login primeiro")
+            toast.error('Faça o login primeiro', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
         }
     }, [token])
@@ -66,14 +76,32 @@ function CadastroTema() {
                     'Authorization': token
                 }
             })
-            alert('Aeeeee atualizou um tema');
+            toast.success('Aeeeee atualizou um tema', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }else {
             post(`/tema`, tema, setTema, {
                 headers: {
                     'Authorization': token
                 }
             })
-            alert('Conseguiu cadastrar um temaaaaa!!')
+            toast.success('Conseguiu cadastrar um temaaaaa!!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }
         back()
     }

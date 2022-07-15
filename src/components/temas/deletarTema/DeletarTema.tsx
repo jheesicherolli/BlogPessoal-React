@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { buscaId, deleteId } from "../../../services/Service";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 
 function DeletarTema() {
@@ -19,7 +20,16 @@ function DeletarTema() {
 
     useEffect(() => {
         if (token == "") {
-            alert("Faça o login primeiro")
+          toast.error('Faça o login primeiro', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+        });
             navigate("/login")
         }
     }, [token])
@@ -49,7 +59,16 @@ function DeletarTema() {
                 'Authorization': token
             }
         });
-        alert('Que chato você deletou meu tema favorito .-.')
+        toast.success('Que chato você deletou meu tema favorito .-.', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+      });
     }
 
     function nao(){

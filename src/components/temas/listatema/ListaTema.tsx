@@ -6,6 +6,7 @@ import Tema from '../../../models/Tema';
 import { busca } from '../../../services/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
 
 function ListaTema() {
@@ -20,7 +21,16 @@ function ListaTema() {
 
     useEffect(() => {
         if (token == '') {
-            alert("Faça o login primeiro")
+            toast.error('Faça o login primeiro', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
         }
     }, [token])

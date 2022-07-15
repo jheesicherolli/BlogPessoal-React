@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 /**./ refere a pasta onde se encontra aquele arquivo, estou meio que voltando um caminho */
 
 /**um componente só vai poder retornar um elemento, para ter mais de um elemento é preciso 
@@ -23,13 +24,23 @@ function Home() {
     );
 
     useEffect(() => {
-        if(token == ""){
-            alert ("Nananinanão, faça o login primeiro!")
+        if (token == "") {
+            toast.error('Nananinanão, faça o login primeiro!', {
+                //error = mensagem de erro
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate('/login')
         }
     }, [token])
 
-    
+
     return (
         <>
             <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
@@ -40,10 +51,10 @@ function Home() {
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
-                            <ModalPostagem/>
+                            <ModalPostagem />
                         </Box>
                         <Link to="/posts" className='text-decorator-none'>
-                        <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                            <Button variant="outlined" className='botao'>Ver Postagens</Button>
                         </Link>
                     </Box>
                 </Grid>

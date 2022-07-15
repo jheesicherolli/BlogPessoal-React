@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { busca, buscaId, post, put } from "../../../services/Service";
@@ -21,9 +22,20 @@ function CadastroPost() {
     const token = useSelector<TokenState, TokenState["tokens"]>(
         (state) => state.tokens
     );
+
     useEffect(() => {
         if (token == "") {
-            alert("Opa, precisa estar logado")
+            toast.error('Opa, precisa estar logado', {
+                //error = mensagem de erro
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
         }
     }, [token])
@@ -92,14 +104,33 @@ function CadastroPost() {
                     'Authorization': token
                 }
             })
-            alert('AEEEEEEEEEEEEE, postagem atualizada');
+            toast.success('AEEEEEEEEEEEEE, postagem atualizada', {
+                //notificação de sucesso
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         } else {
             post(`/postagens`, postagem, setPostagem, {
                 headers: {
                     'Authorization': token
                 }
             })
-            alert('OBAA, postagem cadastrada com sucesso');
+            toast.success('OBAA, postagem cadastrada com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }
         back()
     }

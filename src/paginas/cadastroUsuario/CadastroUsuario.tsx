@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './CadastroUsuario.css';
 import User from '../../models/User';
 import { cadastroUsuario } from '../../services/Service';
+import { toast } from 'react-toastify';
 
 function CadastroUsuario() {
 
@@ -33,7 +34,7 @@ function CadastroUsuario() {
     //armazenar os valores do retorno da api, os valores cadastrados são guardados dentro de userResult
 
     useEffect(() => {
-        if (userResult.id !== 0) 
+        if (userResult.id !== 0)
         //verifica se p valor é diferente de , se for significa que já tem algum valor cadastrado
         {
             navigate("/login")
@@ -66,9 +67,27 @@ function CadastroUsuario() {
             /*acessa a service de cadastro enviando a rota, enviando os valores do objeto user (useState user) que são inseridos pelo usuário nos campos e atualizados pela updatedModel
             ao enviar os dados ele aguarda o retorno na setUserResult*/
 
-            alert('Você conseguiu, foi cadastrado!!')
+            toast.success('Você conseguiu, foi cadastrado!!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         } else {
-            alert('Fez algo errado. Tente de novo!!')
+            toast.error('Fez algo errado. Tente de novo!!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }
     }
     //envia os dados pra cadastro

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { addToken } from '../../../store/tokens/actions';
+import {toast} from "react-toastify";
 import './Navbar.css';
 
 function Navbar() {
@@ -19,7 +20,23 @@ function Navbar() {
     function goLogout() {
         dispatch(addToken(''));
         //token é eliminado
-        alert("Tchauu, até mais")
+        toast.info('Tchauu, até mais', {
+            position: "top-right",
+            autoClose: 2000,
+            //tempo de tela
+            hideProgressBar: false,
+            //false exibe a barra de progresso
+            closeOnClick: true,
+            //true: possibilidade de fechar a notificação clicando no x
+            pauseOnHover: false,
+            //false não permite que a notificação continue em tela, ou seja pause
+            draggable: false,
+            //move a noticação de local, mas por estar false não realizará nada
+            theme: "colored",
+            //tipo de tema da notificação
+            progress: undefined,
+        });
+        //alerta informativo
         navigate("/login")
         //direcionado pra tela de login, assim ele é obrigado a se autenticacar novamente
     }

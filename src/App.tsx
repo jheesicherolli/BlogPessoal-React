@@ -16,12 +16,17 @@ import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPosta
 import { Provider } from 'react-redux';
 import store from './store/store';
 
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+//permitem notificações personalizadas e bonitas
+
 
 /**aqui eu posso adicionar códigos html dentro de javascript, graças ao JSX dentro do typescript(TSX) */
 
 function App() {
    return (
       <Provider store={store}>
+         <ToastContainer/>
          <Router>
             <Navbar />
             <div style={{ minHeight: '100vh' }}>
