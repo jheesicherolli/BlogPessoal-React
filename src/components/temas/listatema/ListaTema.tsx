@@ -1,43 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardActions, CardContent, Typography } from '@material-ui/core';
 import { Box, Button } from '@mui/material';
+import Tema from '../../../models/Tema';
+import useLocalStorage from 'react-use-localstorage';
+import { busca } from '../../../services/Service';
 
 
 function ListaTema() {
 
+    const [temas, setTemas] = useState<Tema[]>([])
+    const [token, setToken] = useLocalStorage('token');
+    //é inicializado com o valor token
+    let navigate = useNavigate();
+    //redirecionamento de páginas, se não tiver autenticado é mandado pra página de login
+
+    useEffect(() => {
+        if (token == '') {
+            alert("Faça o login primeiro")
+            navigate("/login")
+        }
+    }, [token])
+
+    async function getTema() {
+        await busca("/tema", setTemas, {
+            headers: {
+                'Authorization': token
+                //propriedade que recebe o token
+            }
+        })
+    }
+    //headers cabeçalho da requisição
+
+    useEffect(() => {
+        getTema()
+    }, [temas.length])
+    //length = tamanho, sempre que temas mudar, ele vai aconar a função getTema
+
+
+
     return (
         <>
-            <Box m={2}>
-                <Card variant="outlined">
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>
-                            Tema
-                        </Typography>
-                        <Typography variant="h5" component="h2">
-                            Minha Descrição
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Box display='flex' justifyContent='center' mb={1.5} >
-                            <Link to="" className="text-decorator-none">
-                                <Box mx={1}>
-                                    <Button variant="contained" className="marginLeft" size="small" color="primary">
-                                        Atualizar
-                                    </Button>
-                                </Box>
-                            </Link>
-                            <Link to="" className="text-decorator-none">
-                                <Box mx={1}>
-                                    <Button variant="contained" size="small" color="secondary">
-                                        Deletar
-                                    </Button>
-                                </Box>
-                            </Link>
-                        </Box>
-                    </CardActions>
-                </Card>
-            </Box>
+            {
+                temas.map(tema =>(
+                <Box m={2}>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <Typography color="textSecondary" gutterBottom>
+                                Tema
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                               {tema.descricao}
+                               {/* pega o tema que está na variável map e captura a descrição */}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Box display='flex' justifyContent='center' mb={1.5} >
+                                <Link to={`/formularioTema/${tema.id}`} className="text-decorator-none">
+                                    <Box mx={1}>
+                                        <Button variant="contained" className="marginLeft" size="small" color="primary">
+                                            Atualizar
+                                        </Button>
+                                    </Box>
+                                </Link>
+                                <Link to={`/deletarTema/${tema.id}`} className="text-decorator-none">
+                                    <Box mx={1}>
+                                        <Button variant="contained" size="small" color="secondary">
+                                            Deletar
+                                        </Button>
+                                    </Box>
+                                </Link>
+                            </Box>
+                        </CardActions>
+                    </Card>
+                </Box>
+            ))
+            }
         </>
     )
 }
