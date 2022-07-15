@@ -3,9 +3,10 @@ import { Button, Grid, Typography } from '@material-ui/core';
 import { Box } from "@mui/material";
 import './Home.css';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
-import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { Link, useNavigate } from 'react-router-dom';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../store/tokens/tokensReducer';
 /**./ refere a pasta onde se encontra aquele arquivo, estou meio que voltando um caminho */
 
 /**um componente só vai poder retornar um elemento, para ter mais de um elemento é preciso 
@@ -17,7 +18,9 @@ import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 function Home() {
 
     let navigate = useNavigate();
-    const[token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
 
     useEffect(() => {
         if(token == ""){
@@ -39,7 +42,9 @@ function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem/>
                         </Box>
+                        <Link to="/posts" className='text-decorator-none'>
                         <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6}>

@@ -1,11 +1,12 @@
 import { Container, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import { Button } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
 import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { busca, buscaId, post, put } from "../../../services/Service";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 import TabPostagem from "../tabpostagem/TabPostagem";
 
 
@@ -17,8 +18,9 @@ function CadastroPost() {
     // cadastrar um post novo ou atualizar um que existe passando o id
     const [temas, setTemas] = useState<Tema[]>([])
     //listagem de temas
-    const [token, setToken] = useLocalStorage('token');
-
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
     useEffect(() => {
         if (token == "") {
             alert("Opa, precisa estar logado")
@@ -124,12 +126,12 @@ function CadastroPost() {
                                 'Authorization': token
                             }
                         })}>
-                            {
-                                temas.map(tema => (
-                                    <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
-                                    //só exibe a descrição armazenando o id, usado para preencher o state de postagem
-                                ))
-                            }
+                        {
+                            temas.map(tema => (
+                                <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
+                                //só exibe a descrição armazenando o id, usado para preencher o state de postagem
+                            ))
+                        }
                     </Select>
                     {/*lista todos os temas que vem da api */}
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>

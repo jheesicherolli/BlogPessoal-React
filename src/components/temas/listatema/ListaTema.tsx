@@ -3,14 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardActions, CardContent, Typography } from '@material-ui/core';
 import { Box, Button } from '@mui/material';
 import Tema from '../../../models/Tema';
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 
 function ListaTema() {
 
-    const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage('token');
+    const [temas, setTemas] = useState<Tema[]>([]);
+    const token= useSelector<TokenState,TokenState["tokens"]>(
+        (state) => state.tokens
+        );
     //é inicializado com o valor token
     let navigate = useNavigate();
     //redirecionamento de páginas, se não tiver autenticado é mandado pra página de login
