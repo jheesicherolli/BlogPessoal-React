@@ -7,10 +7,10 @@ import reportWebVitals from './reportWebVitals';
 //ReactDom= biblioteca
 //render = metódo que vem da biblioteca ReactDom, ele renderiza tudo em tela
 ReactDOM.render(
-<React.StrictMode>
-<App /> 
-</React.StrictMode>,
-document.getElementById('root')
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 //App é um componenter, é como se fosse uma tag html, vem do app.tsx
 //root é uma div localizada no index.html
